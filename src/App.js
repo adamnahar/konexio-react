@@ -12,14 +12,36 @@ class App extends React.Component {
       activeTabs: 'add',
       items: []
     }
+    this.selectAdd = this.selectAdd.bind(this);
+    this.selectList= this.selectList.bind(this);
+    this.selectPay = this.selectPay.bind(this);
+  }
+  selectAdd(e){
+    console.log(e)
+   this.setState({
+     activeTabs:'add'
+   })
+
+  }
+  selectList(){
+    this.setState({
+      activeTabs:'list'
+    })
+ 
+  }
+  selectPay(){
+    this.setState({
+      activeTabs:'pay'
+    })
+ 
   }
 
   render() {
     return(
       <div className="App"> 
-      <Button isSelected={this.state.activeTabs==='add'}>Add</Button>
-      <Button isSelected={this.state.activeTabs==='list'}>List </Button>
-      <Button isSelected={this.state.activeTabs==='pay'}>Pay</Button>
+      <Button onClick={this.selectAdd} isSelected={this.state.activeTabs==='add'}>Add</Button>
+      <Button onClick={this.selectList} isSelected={this.state.activeTabs==='list'}>List </Button>
+      <Button onClick={this.selectPay} isSelected={this.state.activeTabs==='pay'}>Pay</Button>
         
       
       </div>

@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 class Button extends Component {
     render(){
         return (
-            <button type="button">{this.props.children}</button>
+            <button
+            onClick={this.props.onClick} 
+            className={this.props.isSelected === true?  "btn btn-primary" : "btn btn-light"}
+            type="button">
+                {this.props.children}
+        </button>
         )
     }
 }
