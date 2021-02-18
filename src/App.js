@@ -15,6 +15,7 @@ class App extends React.Component {
     this.selectAdd = this.selectAdd.bind(this);
     this.selectList= this.selectList.bind(this);
     this.selectPay = this.selectPay.bind(this);
+    this.add = this.add.bind(this);
   }
   selectAdd(e){
     console.log(e)
@@ -35,15 +36,47 @@ class App extends React.Component {
     })
  
   }
-
+  add(name, price ){
+    const obj = {
+      name: name,
+      price: price
+    }
+    const newList = this.state.items
+  newList.push(obj)
+  this.setState({
+    items: newList
+  })
+}
+add(name, price) {
+  console.log("je suis dans add",name)
+  const obj = {
+    name: name,
+    price: price
+  }
+  console.log("ddd",this.state.items)
+  const newList = this.state.items
+  newList.push(obj)
+  this.setState({
+    items: newList
+  })
+}
+  renderContent = () => {
+    switch(this.state.activeTabs) {
+      case 'add':
+        return <Add addItem={this.add}></Add>
+      case 'list':
+        return <List listItems={this.state.items}></List>
+      case 'pay':
+        return <Pay></Pay>
+    }
+  }
   render() {
     return(
       <div className="App"> 
-      <Button onClick={this.selectAdd} isSelected={this.state.activeTabs==='add'}>Add</Button>
-      <Button onClick={this.selectList} isSelected={this.state.activeTabs==='list'}>List </Button>
-      <Button onClick={this.selectPay} isSelected={this.state.activeTabs==='pay'}>Pay</Button>
-        
-      
+      <Button onClick={this.selectAdd}>Add</Button>
+      <Button onClick={this.selectList}>List </Button>
+      <Button onClick={this.selectPay}>Pay</Button>
+      {this.renderContent()}
       </div>
     )
   }
